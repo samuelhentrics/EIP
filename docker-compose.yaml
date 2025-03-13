@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+  frontend:
+    image: node:23
+    container_name: frontend_service
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    command: ["sh", "-c", "npm install && npm start"]
+    restart: always
+    networks:
+      - app_network
+    volumes:
+      - ./Front:/app
+    depends_on:
+      - backend
+    
+
+  backend:
+    image: node:18
+    container_name: backend_service
+    working_dir: /app
+    ports:
+      - "8080:3000"  # Expose 8080 pour le back (3000 en interne)
+    command: sh -c "npm install && node server.js"
+    restart: always
+    networks:
+      - app_network
+    volumes:
+      - ./Back:/app
+    depends_on:
+      - rabbitmq
+
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq_service
+    ports:
+      - "5672:5672" 
+      - "15672:15672" 
+    networks:
+      - app_network
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+
+networks:
+  app_network:
+    driver: bridge

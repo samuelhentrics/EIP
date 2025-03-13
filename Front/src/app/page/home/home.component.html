@@ -1,0 +1,189 @@
+<div class="container mt-4">
+  
+      <!-- Passer Commande -->
+        <div class="card mb-4">
+          <div class="card-header">
+            Passer Commande
+          </div>
+          <div class="card-body">
+
+
+            <div class="row">
+                <div class="col-4">
+                    <!-- Web Site -->
+                    <div class="mb-3">
+                        <h5>Website</h5>
+                        <div class="card-deck" style="border: 2px solid black; min-height: 300px;">
+
+                        <div style="background-color: rgb(66, 164, 255); width: 100%; height:50px; display: flex; align-items: center; padding : 10px;">
+                            <h5 style="color:white; margin: 0;">Website</h5>
+                        </div> 
+
+                        <div class="d-flex p-2 align-items-center justify-content-center">
+
+                        <div *ngFor="let product of productsSite" class="card m-2">
+                          <div class="card-body">
+                            <h6 class="card-title">{{ product.name }} </h6>
+                            <button class="btn btn-primary" (click)="selectProduct(product)" style="font-size:10px;">
+                              Buy now
+                            </button>
+                          </div>
+                        </div>
+
+                    </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <!-- Résultat -->
+                    <div class="mb-3 text-center">
+                        <h5>Current format</h5>
+                        <div class="form-group">
+                          <textarea style="height: 300px;" class="form-control" placeholder="Produit sélectionné"
+                          [value]="getSelectedProduct()" readonly></textarea>
+                
+                        </div>
+                        <button class="btn btn-secondary mt-3" (click)="transform()">Transform</button>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <!-- App -->
+                     <div style="    background-image: url(img/iphone.png);
+                     width: 100%;
+                     height: 100%;
+                     background-size: contain;
+                     background-repeat: no-repeat;
+                     background-position: center; display: flex; justify-content: center;">
+                     
+                        <div style="    margin-top: 30px;
+                        margin-bottom: 10px;
+                        width: 176.5px;
+                        border-radius: 0 0 23px 23px;
+                        overflow: hidden;
+                        margin-right: 1px; ">
+                            
+                            <div style="background-color: rgb(0, 140, 255); height: 35px; width: 100%; display: flex; align-items: center; justify-content: center;">
+                                <h5 style="color:white; text-align: center; margin: 0;">App</h5>
+                            </div>
+
+                            <div style="height: 328px;
+    overflow: scroll;">
+                              <div style="font-size: 10px; padding: 10px;">
+                                The best way to purchase yours products.
+                            </div>
+                            
+                            <div *ngFor="let product of productsApp" class="card m-2">
+                              <div class="card-body" style="font-size: 10px; padding: 10px;">
+                                <h6 class="card-title" style="font-size: 12px">{{ product.name }} </h6>
+                                <div style="text-align: right;">
+                                  <button class="btn btn-primary" style="font-size: 10px;" (click)="selectProduct(product)">
+                                    Buy now
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+
+                            </div>
+                            
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            
+  
+            
+  
+            
+          </div>
+        </div>
+  
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <img src="width: 50%" src="https://www.enterpriseintegrationpatterns.com/img/MessageTranslator.gif" alt="">
+        </div>
+      </div>
+
+
+      <!-- Transformator -->
+      <div class="col-md-12">
+        <div class="card mb-4">
+          <div class="card-header">
+            Transformator
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="dataInput">Donnée</label>
+              <textarea style="height: 300px;" class="form-control" 
+                          [value]="transformText" readonly></textarea>
+            </div>
+            <button class="btn btn-success" (click)="sendTransform()">Envoyer</button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <img src="width: 50%" src="https://www.enterpriseintegrationpatterns.com/img/ContentBasedRouter.gif" alt="">
+        </div>
+      </div>
+
+      <!-- Content-Based Router -->
+      <div class="col-md-12">
+        <div class="card mb-4">
+          <div class="card-header">
+            Content-Based Router
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-4" *ngFor="let warehouse of warehouses">
+                <div class="card">
+                  <div class="card-header">
+                    Entrepot {{ warehouse.name }}
+                  </div>
+                  <div class="card-body">
+                    <div *ngFor="let order of warehouse.orders">
+                      <textarea style="height: 180px;" class="form-control" [value]="order" readonly></textarea>
+                    </div>                    
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <img src="width: 50%" src="https://www.enterpriseintegrationpatterns.com/img/Aggregator.gif" alt="">
+        </div>
+      </div>
+    <!-- Aggregator -->
+    <div class="card mb-4">
+      <div class="card-header">
+        Aggregator
+      </div>
+      <div class="card-body">
+          <button class="btn btn-warning" (click)="aggregateOrders()">Agregate</button>
+
+          <div class="row">
+              <div class="col-4" *ngFor="let warehouse of warehouses">
+                <div class="card">
+                  <div class="card-header">
+                    Entrepot {{ warehouse.name }}
+                  </div>
+                  <div class="card-body">
+                      <textarea style="height: 500px;" class="form-control" [value]="warehouse.aggregateOrders" readonly></textarea>            
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  
