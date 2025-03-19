@@ -111,19 +111,19 @@
       </div>
 
 
-      <!-- Transformator -->
+      <!-- Translator -->
       <div class="col-md-12">
         <div class="card mb-4">
           <div class="card-header">
-            Transformator
+            Translator
           </div>
           <div class="card-body">
             <div class="form-group">
-              <label for="dataInput">Donnée</label>
+              <label for="dataInput">Data</label>
               <textarea style="height: 300px;" class="form-control" 
                           [value]="transformText" readonly></textarea>
             </div>
-            <button class="btn btn-success" (click)="sendTransform()">Envoyer</button>
+            <button class="btn btn-success" (click)="sendTransform()">Send</button>
           </div>
         </div>
       </div>
@@ -145,7 +145,7 @@
               <div class="col-4" *ngFor="let warehouse of warehouses">
                 <div class="card">
                   <div class="card-header">
-                    Entrepot {{ warehouse.name }}
+                    Warehouse {{ warehouse.name }}
                   </div>
                   <div class="card-body">
                     <div *ngFor="let order of warehouse.orders">
@@ -175,7 +175,7 @@
               <div class="col-4" *ngFor="let warehouse of warehouses">
                 <div class="card">
                   <div class="card-header">
-                    Entrepot {{ warehouse.name }}
+                    Warehouse {{ warehouse.name }}
                   </div>
                   <div class="card-body">
                       <textarea style="height: 500px;" class="form-control" [value]="warehouse.aggregateOrders" readonly></textarea>            

@@ -8,7 +8,7 @@ class MessageTranslator {
         if (contentType === "application/json") {
             return this.jsonToJson(message);
         }
-        throw new Error("Format de message non supporté");
+        throw new Error("Unsupported message format.");
     }
 
     static async xmlToJson(xmlString) {
